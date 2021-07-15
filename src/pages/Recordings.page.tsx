@@ -1,4 +1,5 @@
 import { memo, FC } from "react";
+import { Link } from "react-router-dom";
 
 interface Props {
 
@@ -7,7 +8,8 @@ interface Props {
 const Recordings: FC<Props> = (props) => {
     return (
         <div >
-           Recordings Page
+            Recordings Page
+            <Link to="/dashboard">Go to dashboard</Link>
         </div>
     );
 };
