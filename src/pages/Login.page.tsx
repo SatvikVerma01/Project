@@ -2,9 +2,8 @@ import {memo, FC} from "react";
 import {Link} from "react-router-dom";
 import MyButton from "../components/MyButton";
 import MyInput from "../components/MyInput";
-import {HiLockClosed, HiOutlineMail, HiUser} from "react-icons/hi";
+import {HiLockClosed, HiOutlineMail} from "react-icons/hi";
 import MyCheckBox from "../components/MyCheckBox";
-import Toggle from "../components/Toggle";
 import {useState} from "react";
 
 interface Props {}

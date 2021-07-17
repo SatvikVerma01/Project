@@ -1,5 +1,4 @@
-import {type} from "os";
-import {memo, FC, ReactElement} from "react";
+import {memo, FC} from "react";
 import { IconType } from "react-icons";
 
 

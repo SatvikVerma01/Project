@@ -1,7 +1,6 @@
 import {memo, FC} from "react";
 import {HiLockClosed, HiOutlineMail} from "react-icons/hi";
 import {Link} from "react-router-dom";
-import AuthHero from "../components/AuthHero";
 import MyButton from "../components/MyButton";
 import MyCheckBox from "../components/MyCheckBox";
 import MyInput from "../components/MyInput";
