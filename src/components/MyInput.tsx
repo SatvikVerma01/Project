@@ -1,7 +1,7 @@
 import React from "react";
 import {memo, FC, InputHTMLAttributes} from "react";
 import {IconType} from "react-icons";
-import { icons } from "react-icons/lib";
+
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   icon?: IconType;
