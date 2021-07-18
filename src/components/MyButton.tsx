@@ -1,8 +1,7 @@
-import { memo, FC } from "react";
+import { memo, FC, ButtonHTMLAttributes } from "react";
 
-interface Props {
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
     name: string,
-    type?:any
 }
 
 const MyButton: FC<Props> = (props) => {

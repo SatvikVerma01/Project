@@ -1,15 +1,34 @@
 import {memo, FC} from "react";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import MyButton from "../components/MyButton";
 import MyInput from "../components/MyInput";
 import {HiLockClosed, HiOutlineMail} from "react-icons/hi";
 import MyCheckBox from "../components/MyCheckBox";
-import {useState} from "react";
+import * as yup from "yup";
+import {useFormik} from "formik";
+import {FaSpinner} from "react-icons/fa";
 
 interface Props {}
 
 const Login: FC<Props> = (props) => {
-  const [data, setData] = useState({email: "", password: ""});
+  const history = useHistory();
+  const myForm = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    onSubmit: (data, {setSubmitting}) => {
+      setTimeout(() => {
+        console.log("form submitting", data);
+        setSubmitting(false);
+        history.push("/dashboard");
+      }, 3000);
+    },
+    validationSchema: yup.object().shape({
+      email: yup.string().required().email(),
+      password: yup.string().required().min(8),
+    }),
+  });
 
   return (
     <div className="m-auto">
@@ -20,42 +39,38 @@ const Login: FC<Props> = (props) => {
           Create an account
         </Link>
       </p>
-      <form onSubmit={(event) => {
-        console.log("login button pressed");
-        event.preventDefault();
-      }}>
+      <form onSubmit={myForm.handleSubmit}>
         <div className="pb-10">
-          <label htmlFor="email-address" className="sr-only">
-            Email
-          </label>
           <MyInput
-            data={data}
-            setData={setData}
-            name="email"
+            id="email-address"
             type="email"
             placeholder="Email"
             icon={HiOutlineMail}
             autoComplete="email"
-            value={data.email}
+            {...myForm.getFieldProps("email")}
+            required
+            touched={myForm.touched.email}
+            errors={myForm.errors.email}
           ></MyInput>
-          <label htmlFor="password" className="sr-only">
-            Password
-          </label>
           <MyInput
-            data={data}
-            setData={setData}
-            name="password"
-            value={data.password}
+            id="password"
             type="password"
             placeholder="Password"
             icon={HiLockClosed}
             autoComplete="current-password"
+            {...myForm.getFieldProps("password")}
+            touched={myForm.touched.password}
+            errors={myForm.errors.password}
+            required
           ></MyInput>
         </div>
 
         <div className="flex justify-between">
           <MyButton type="submit" name="Log In"></MyButton>
         </div>
+        {myForm.isSubmitting && (
+          <FaSpinner className="animate-spin"></FaSpinner>
+        )}
       </form>
       <div className="flex-col justify-items-center">
         <div>

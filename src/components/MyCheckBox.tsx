@@ -1,6 +1,6 @@
-import {memo, FC} from "react";
+import {memo, FC, InputHTMLAttributes} from "react";
 
-interface Props {
+interface Props extends InputHTMLAttributes<HTMLInputElement> {
   name?: string;
 }
 
