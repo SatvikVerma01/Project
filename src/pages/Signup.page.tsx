@@ -1,21 +1,24 @@
 import {useFormik} from "formik";
-import {memo, FC} from "react";
+import {memo, FC, useState} from "react";
 import {HiLockClosed, HiOutlineMail} from "react-icons/hi";
 import {Link, useHistory} from "react-router-dom";
-import MyButton from "../components/MyButton";
-import MyCheckBox from "../components/MyCheckBox";
-import MyInput from "../components/MyInput";
+import MyButton from "../components/MyButton/MyButton";
+import MyCheckBox from "../components/MyCheckBox/MyCheckBox";
+import MyInput from "../components/MyInput/MyInput";
 import * as yup from "yup";
 import {FaSpinner} from "react-icons/fa";
+import Toggle from "../components/Toggle/Toggle";
 
 interface Props {}
 
 const Signup: FC<Props> = (props) => {
+  const [enabled, setEnabled] = useState(false);
+  const x = enabled ? "text" : "password";
   const history = useHistory();
   const myForm = useFormik({
     initialValues: {
       firstName: "",
-      lastName:"",
+      lastName: "",
       email: "",
       password: "",
     },
@@ -30,7 +33,7 @@ const Signup: FC<Props> = (props) => {
       email: yup.string().required().email(),
       password: yup.string().required().min(8),
       firstName: yup.string().required("Please enter First Name"),
-      lastName:yup.string(),
+      lastName: yup.string(),
     }),
   });
   return (
@@ -56,7 +59,7 @@ const Signup: FC<Props> = (props) => {
             touched={myForm.touched.firstName}
             errors={myForm.errors.firstName}
           ></MyInput>
-             <MyInput
+          <MyInput
             id="Last-Name"
             type="text"
             placeholder="Last Name"
@@ -78,7 +81,7 @@ const Signup: FC<Props> = (props) => {
           ></MyInput>
           <MyInput
             id="password"
-            type="password"
+            type={x}
             placeholder="Password"
             icon={HiLockClosed}
             autoComplete="current-password"
@@ -88,20 +91,22 @@ const Signup: FC<Props> = (props) => {
             required
           ></MyInput>
         </div>
+        <div className="flex text-lg items-center font-medium text-gray-400 pb-10">
+          <MyCheckBox />I agree to the{" "}
+          <Link className="text-primary ml-2" to="/termsandconditions">
+            terms and conditions
+          </Link>
+        </div>
+        
 
         <div className="flex justify-between">
+          <Toggle name="Show Password" enabled={enabled} setEnabled={setEnabled} ></Toggle>
           <MyButton type="submit" name="Get Started!"></MyButton>
         </div>
         {myForm.isSubmitting && (
           <FaSpinner className="animate-spin"></FaSpinner>
         )}
       </form>
-      <div className="flex text-lg items-center font-medium text-gray-400 pb-10">
-        <MyCheckBox />I agree to the{" "}
-        <Link className="text-primary ml-2" to="/termsandconditions">
-          terms and conditions
-        </Link>
-      </div>
     </div>
   );
 };

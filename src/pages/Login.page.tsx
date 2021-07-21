@@ -1,16 +1,19 @@
-import {memo, FC} from "react";
+import {memo, FC, useState} from "react";
 import {Link, useHistory} from "react-router-dom";
-import MyButton from "../components/MyButton";
-import MyInput from "../components/MyInput";
+import MyButton from "../components/MyButton/MyButton";
+import MyInput from "../components/MyInput/MyInput";
 import {HiLockClosed, HiOutlineMail} from "react-icons/hi";
-import MyCheckBox from "../components/MyCheckBox";
+import MyCheckBox from "../components/MyCheckBox/MyCheckBox";
 import * as yup from "yup";
 import {useFormik} from "formik";
 import {FaSpinner} from "react-icons/fa";
+import Toggle from "../components/Toggle/Toggle";
 
 interface Props {}
 
 const Login: FC<Props> = (props) => {
+  const [enabled, setEnabled] = useState(false);
+  const x = enabled ? "text" : "password";
   const history = useHistory();
   const myForm = useFormik({
     initialValues: {
@@ -54,7 +57,7 @@ const Login: FC<Props> = (props) => {
           ></MyInput>
           <MyInput
             id="password"
-            type="password"
+            type={x}
             placeholder="Password"
             icon={HiLockClosed}
             autoComplete="current-password"
@@ -65,26 +68,23 @@ const Login: FC<Props> = (props) => {
           ></MyInput>
         </div>
 
-        <div className="flex justify-between">
+        <div className="flex justify-between items-center">
+          <Toggle name="Show Password" enabled={enabled} setEnabled={setEnabled} ></Toggle>
           <MyButton type="submit" name="Log In"></MyButton>
         </div>
         {myForm.isSubmitting && (
           <FaSpinner className="animate-spin"></FaSpinner>
         )}
       </form>
-      <div className="flex-col justify-items-center">
-        <div>
-          <MyCheckBox name="Keep me logged in"></MyCheckBox>
-        </div>
-        <div>
-          <Link
-            className="text-primary text-xl font-medium"
+     
+        <MyCheckBox name="Keep me logged in"></MyCheckBox>
+       
+          <Link 
+            className="text-primary text-xl font-medium w-full"
             to="/forgotpassword"
           >
             Forgot Password?
           </Link>
-        </div>
-      </div>
     </div>
   );
 };

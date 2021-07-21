@@ -1,6 +1,6 @@
 import {memo, FC} from "react";
 import {Route, Switch} from "react-router-dom";
-import LeftSidebar from "../components/LeftSidebar";
+import LeftSidebar from "../components/LeftSidebar/LeftSidebar";
 import DashboardPage from "./Dashboard.page";
 import LecturePage from "./Lecture.Page";
 import RecordingsPage from "./Recordings.page";

@@ -1,7 +1,7 @@
 import { memo, FC } from "react";
 import { HiOutlineMail } from "react-icons/hi";
-import MyButton from "../components/MyButton";
-import MyInput from "../components/MyInput";
+import MyButton from "../components/MyButton/MyButton";
+import MyInput from "../components/MyInput/MyInput";
 
 interface Props{
 }
