@@ -35,7 +35,7 @@ const Login: FC<Props> = (props) => {
 
   return (
     <div className="m-auto">
-      <h1 className="text-5xl font-semi-bold pt-5 pb-5">Log In to Devslane</h1>
+      <h1 className="text-5xl font-semi-bold pt-5 pb-5">Log In to <span className="text-primary font-medium">CORK</span></h1>
       <p className="text-lg font-medium pb-16">
         New Here?{" "}
         <Link to="/signup" className="text-primary underline">
@@ -70,7 +70,7 @@ const Login: FC<Props> = (props) => {
 
         <div className="flex justify-between items-center">
           <Toggle name="Show Password" enabled={enabled} setEnabled={setEnabled} ></Toggle>
-          <MyButton type="submit" name="Log In"></MyButton>
+          <MyButton type="submit" name="Log In" ></MyButton>
         </div>
         {myForm.isSubmitting && (
           <FaSpinner className="animate-spin"></FaSpinner>

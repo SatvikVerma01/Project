@@ -22,7 +22,7 @@ export default{
       options:textColors,
       mapping: textColors,
      },
-        borderWidth: {
+      borderWidth: {
       control: { type: "select" },
       options: borderWidths,
       mapping: borderWidths,

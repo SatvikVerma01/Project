@@ -6,7 +6,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   borderColor?: string;
   textColor?: string;
-    borderWidth?: string;
+  borderWidth?: string;
 }
 
 const MyButton: FC<Props> = (props) => {
