@@ -11,16 +11,13 @@ export default{
       options: Backgroundcolors,
       mapping: Backgroundcolors,
     },
+    value: {
+      control: { type: "range" },
+    },
   },
 }
-export const Basic = (args: any) => <ProgressBar {...args}></ProgressBar>;
-Basic.args = {
-  max: 100,
+export const Main = (args: any) => <ProgressBar {...args}></ProgressBar>;
+Main.args = {
   value: 0,
   Backgroundcolor:"bg-danger"
-};
-export const Labeled = (args: any) => <ProgressBar {...args}></ProgressBar>;
-Labeled.args = {
-  max: 100,
-  value:0
 };
