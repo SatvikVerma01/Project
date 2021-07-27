@@ -6,7 +6,7 @@ interface Props extends ImgHTMLAttributes<HTMLImageElement> {
   isOnline?: boolean;
 }
 
-const Avatar: React.FC<Props> = ({size, src, isOnline, ...rest}) => {
+const Avatar: React.FC<Props> = ({size, src, isOnline,className, ...rest}) => {
   let avatarSize = "h-14 w-14";
   let dotSize = "h-4 w-4";
   switch (size) {
@@ -32,7 +32,7 @@ const Avatar: React.FC<Props> = ({size, src, isOnline, ...rest}) => {
     }
   }
   return (
-    <div className={"relative" + " " + avatarSize}>
+    <div className={"relative" + " " + avatarSize+" "+className}>
       <img {...rest} src={src} className="rounded-full"></img>
       {isOnline && (
         <div

@@ -1,23 +1,19 @@
 import ProgressBar from "./ProgressBar";
-const Backgroundcolors = ["bg-primary", "bg-danger", "bg-success","bg-dark","bg-warning"];
-
-
 export default{
   title:"ProgressBar",
   component: ProgressBar,
   argTypes: {
-    Backgroundcolor: {
+    progressColor: {
       control: { type: "select" },
-      options: Backgroundcolors,
-      mapping: Backgroundcolors,
+      options:["primary","danger","success","warning","dark"],
     },
-    value: {
+    progressValue: {
       control: { type: "range" },
     },
   },
 }
 export const Main = (args: any) => <ProgressBar {...args}></ProgressBar>;
 Main.args = {
-  value: 0,
-  Backgroundcolor:"bg-danger"
+  progressColor:"bg-primary",
+  progressValue: 0,
 };

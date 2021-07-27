@@ -1,15 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "../Avatar/Avatar";
 
 interface Props {
   avatarArray: string[];
 }
-
 const StackingAvatar: React.FC<Props> = ({ avatarArray, ...rest }) => {
-    const sizeofArray = avatarArray.length;
-    return <>
-  
-    </>;
+  const [showMore, setShowMore] = useState(false);
+  const sizeofArray = avatarArray.length;
+  let numebrOfMoreAvatars: number = 0;
+  let x = [];
+  if (sizeofArray > 4) {
+    numebrOfMoreAvatars = sizeofArray - 4;
+  }
+  for (var index in avatarArray) {
+    if (Number(index) >= 4) {
+      break;
+    } else {
+      x.push(
+        <Avatar
+          className="transform hover:-translate-y-3"
+          src={avatarArray[index]}
+        ></Avatar>
+      );
+    }
+  }
+  if (showMore) {
+    for (var index in avatarArray) {
+    if (Number(index) >= 4) {
+      x.push(
+        <Avatar
+          className="transform hover:-translate-y-3"
+          src={avatarArray[index]}
+        ></Avatar>
+      );
+    } 
+  }
+  }
+  return (
+    <>
+      <div className="flex items-center">
+        {x}
+        {numebrOfMoreAvatars != 0 && <button onClick={()=>setShowMore(!showMore)} className="h-9 rounded-full text-primary shadow-xl border-primary border-2 font-semibold px-2 text-md text-center">
+          +{numebrOfMoreAvatars} more
+        </button>}
+      </div>
+    </>
+  );
 };
 
 StackingAvatar.defaultProps = {

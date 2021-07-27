@@ -5,4 +5,5 @@ export default{
 }
 export const Main = (args: any) => <MyCheckBox {...args}></MyCheckBox>;
 Main.args = {
+  name:"Please tick this checkbox",
 };
